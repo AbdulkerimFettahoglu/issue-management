@@ -27,7 +27,7 @@ public class ProjectServiceImpl implements ProjectService {
     public ProjectDto save(ProjectDto projectDto) {
         Project project = modelMapper.map(projectDto, Project.class);
         projectRepository.save(project);
-        return projectDto;
+        return modelMapper.map(project, ProjectDto.class);
     }
 
     @Override

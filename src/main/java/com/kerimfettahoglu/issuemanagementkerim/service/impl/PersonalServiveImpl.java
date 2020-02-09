@@ -27,7 +27,7 @@ public class PersonalServiveImpl implements PersonalService {
     public PersonalDto save(PersonalDto personalDto) {
         Personal personal = modelMapper.map(personalDto, Personal.class);
         personalRepository.save(personal);
-        return personalDto;
+        return modelMapper.map(personal, PersonalDto.class);
     }
 
     @Override

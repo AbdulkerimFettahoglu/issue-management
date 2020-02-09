@@ -27,8 +27,7 @@ public class IssueServiceImpl implements IssueService {
     public IssueDto save(IssueDto issueDto) {
         Issue issue = modelMapper.map(issueDto, Issue.class);
         issueRepository.save(issue);
-        IssueDto issueDtoReturn = modelMapper.map(issue, IssueDto.class);
-        return issueDtoReturn;
+        return modelMapper.map(issue, IssueDto.class);
     }
 
     @Override
