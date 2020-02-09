@@ -1,34 +1,50 @@
 package com.kerimfettahoglu.issuemanagementkerim.service.impl;
 
+import com.kerimfettahoglu.issuemanagementkerim.dto.PersonalDto;
 import com.kerimfettahoglu.issuemanagementkerim.entity.Personal;
 import com.kerimfettahoglu.issuemanagementkerim.repo.PersonalRepository;
 import com.kerimfettahoglu.issuemanagementkerim.service.PersonalService;
+import com.kerimfettahoglu.issuemanagementkerim.util.TPage;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class PersonalServiveImpl implements PersonalService {
     private final PersonalRepository personalRepository;
-    public PersonalServiveImpl(PersonalRepository personalRepository) {
+    private final ModelMapper modelMapper;
+
+    public PersonalServiveImpl(PersonalRepository personalRepository, ModelMapper modelMapper) {
         this.personalRepository = personalRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
-    public Personal save(Personal personal){
-        return personalRepository.save(personal);
+    public PersonalDto save(PersonalDto personalDto) {
+        Personal personal = modelMapper.map(personalDto, Personal.class);
+        personalRepository.save(personal);
+        return personalDto;
     }
 
     @Override
-    public Personal getAPersonal(Long id) {
-        return personalRepository.getOne(id);
+    public PersonalDto getAPersonal(Long id) {
+        Personal personal = personalRepository.getOne(id);
+        return modelMapper.map(personal, PersonalDto.class);
     }
 
     @Override
-    public Page<Personal> getIssuesByPage(Pageable pagable) {
-        return personalRepository.findAll(pagable);
+    public TPage<PersonalDto> getIssuesByPage(Pageable pagable) {
+        Page<Personal> personalsFromDb = personalRepository.findAll(pagable);
+        List<Personal> personalsList = personalsFromDb.getContent();
+        TPage returnPage  = new TPage();
+        returnPage.setStat(personalsFromDb, Arrays.asList(modelMapper.map(personalsList, PersonalDto[].class)));
+        return returnPage;
     }
 
     @Override
-    public void delete(Personal personal) {
-        personalRepository.delete(personal);
+    public void delete(PersonalDto personalDto) {
+        personalRepository.delete(modelMapper.map(personalDto, Personal.class));
     }
 }

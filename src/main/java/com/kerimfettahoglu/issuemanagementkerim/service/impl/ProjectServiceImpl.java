@@ -1,34 +1,51 @@
 package com.kerimfettahoglu.issuemanagementkerim.service.impl;
 
+import com.kerimfettahoglu.issuemanagementkerim.dto.ProjectDto;
 import com.kerimfettahoglu.issuemanagementkerim.entity.Project;
-import com.kerimfettahoglu.issuemanagementkerim.repo.IssueHistoryRepository;
 import com.kerimfettahoglu.issuemanagementkerim.repo.ProjectRepository;
 import com.kerimfettahoglu.issuemanagementkerim.service.ProjectService;
+import com.kerimfettahoglu.issuemanagementkerim.util.TPage;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class ProjectServiceImpl implements ProjectService {
     private final ProjectRepository projectRepository;
-    public ProjectServiceImpl(ProjectRepository projectRepository) {
+    private final ModelMapper modelMapper;
+
+    public ProjectServiceImpl(ProjectRepository projectRepository, ModelMapper modelMapper) {
         this.projectRepository = projectRepository;
-    }
-    @Override
-    public Project save(Project project) {
-        return projectRepository.save(project);
+        this.modelMapper = modelMapper;
     }
 
     @Override
-    public Project getAProject(Long id) {
-        return projectRepository.getOne(id);
+    public ProjectDto save(ProjectDto projectDto) {
+        Project project = modelMapper.map(projectDto, Project.class);
+        projectRepository.save(project);
+        return projectDto;
     }
 
     @Override
-    public Page<Project> getIssuesByPage(Pageable pagable) {
-        return projectRepository.findAll(pagable);
+    public ProjectDto getAProject(Long id) {
+        Project project = projectRepository.getOne(id);
+        return modelMapper.map(project, ProjectDto.class);
     }
 
     @Override
-    public void delete(Project project) {
-        projectRepository.delete(project);
+    public TPage<ProjectDto> getIssuesByPage(Pageable pagable) {
+        Page<Project> projectsFromDd = projectRepository.findAll(pagable);
+        List<Project> projectList = projectsFromDd.getContent();
+        List<ProjectDto> projectDtoList = Arrays.asList(modelMapper.map(projectList, ProjectDto[].class));
+        TPage returnPage = new TPage<ProjectDto>();
+        returnPage.setStat(projectsFromDd,projectDtoList);
+        return returnPage;
+    }
+
+    @Override
+    public void delete(ProjectDto projectDto) {
+        projectRepository.delete(modelMapper.map(projectDto, Project.class));
     }
 }
