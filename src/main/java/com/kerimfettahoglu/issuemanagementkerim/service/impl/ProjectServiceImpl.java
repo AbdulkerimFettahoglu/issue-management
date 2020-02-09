@@ -8,10 +8,12 @@ import com.kerimfettahoglu.issuemanagementkerim.util.TPage;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Service
 public class ProjectServiceImpl implements ProjectService {
     private final ProjectRepository projectRepository;
     private final ModelMapper modelMapper;

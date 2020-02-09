@@ -8,10 +8,12 @@ import com.kerimfettahoglu.issuemanagementkerim.util.TPage;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Service
 public class PersonalServiveImpl implements PersonalService {
     private final PersonalRepository personalRepository;
     private final ModelMapper modelMapper;

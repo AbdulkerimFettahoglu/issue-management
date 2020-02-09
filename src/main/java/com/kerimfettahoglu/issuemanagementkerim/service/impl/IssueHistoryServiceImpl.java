@@ -5,7 +5,9 @@ import com.kerimfettahoglu.issuemanagementkerim.repo.IssueHistoryRepository;
 import com.kerimfettahoglu.issuemanagementkerim.service.IssueHistoryService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
+@Service
 public class IssueHistoryServiceImpl implements IssueHistoryService {
     private final IssueHistoryRepository issueHistoryRepository;
     public IssueHistoryServiceImpl(IssueHistoryRepository issueHistoryRepository) {
