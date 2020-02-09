@@ -11,5 +11,4 @@ public class PersonalDto {
     private String name;
     private String password;
     private String email;
-    private List<IssueDto> issues;
 }
