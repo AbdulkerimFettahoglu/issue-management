@@ -52,4 +52,15 @@ public class IssueServiceImpl implements IssueService {
         Issue issue = modelMapper.map(issueDto, Issue.class);
         issueRepository.delete(issue);
     }
+
+    public boolean delete(Long id) {
+        issueRepository.deleteById(id);
+        return true;
+    }
+
+    public IssueDto updateIssue(IssueDto issueDto) {
+        Issue issue = modelMapper.map(issueDto, Issue.class);
+        issueRepository.save(issue);
+        return modelMapper.map(issue, IssueDto.class);
+    }
 }

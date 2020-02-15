@@ -33,4 +33,16 @@ public class IssueHistoryServiceImpl implements IssueHistoryService {
     public void delete(IssueHistory issueHistory) {
         issueHistoryRepository.delete(issueHistory);
     }
+
+    @Override
+    public Boolean delete(Long id) {
+        issueHistoryRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public IssueHistory updateIssueHistory(IssueHistory issueHistory) {
+        issueHistoryRepository.save(issueHistory);
+        return issueHistory;
+    }
 }

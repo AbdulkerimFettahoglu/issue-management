@@ -50,4 +50,16 @@ public class ProjectServiceImpl implements ProjectService {
     public void delete(ProjectDto projectDto) {
         projectRepository.delete(modelMapper.map(projectDto, Project.class));
     }
+    @Override
+    public boolean delete(Long id) {
+        projectRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public ProjectDto updateProject(ProjectDto projectDto) {
+        Project project = modelMapper.map(projectDto, Project.class);
+        projectRepository.save(project);
+        return modelMapper.map(project, ProjectDto.class);
+    }
 }

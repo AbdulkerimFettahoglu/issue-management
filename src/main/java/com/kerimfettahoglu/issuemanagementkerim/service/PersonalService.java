@@ -12,4 +12,6 @@ public interface PersonalService {
     PersonalDto getAPersonal(Long id);
     TPage<PersonalDto> getIssuesByPage(Pageable pagable);
     void delete(PersonalDto personalDto);
+    boolean delete(Long id);
+    PersonalDto updatePersonal(PersonalDto personalDto);
 }

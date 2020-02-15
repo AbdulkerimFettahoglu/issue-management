@@ -10,4 +10,6 @@ public interface IssueHistoryService {
     IssueHistory  getAnIssueHistoryItem(Long id);
     Page<IssueHistory> getIssuesByPage(Pageable pagable);
     void delete(IssueHistory issueHistory);
+    Boolean delete(Long id);
+    IssueHistory updateIssueHistory(IssueHistory issueHistory);
 }

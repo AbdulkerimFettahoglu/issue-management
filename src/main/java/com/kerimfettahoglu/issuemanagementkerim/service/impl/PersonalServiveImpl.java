@@ -49,4 +49,17 @@ public class PersonalServiveImpl implements PersonalService {
     public void delete(PersonalDto personalDto) {
         personalRepository.delete(modelMapper.map(personalDto, Personal.class));
     }
+
+    @Override
+    public boolean delete(Long id) {
+        personalRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public PersonalDto updatePersonal(PersonalDto personalDto) {
+        Personal personal = modelMapper.map(personalDto, Personal.class);
+        personalRepository.save(personal);
+        return modelMapper.map(personal, PersonalDto.class);
+    }
 }
