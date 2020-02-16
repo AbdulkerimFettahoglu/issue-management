@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,8 +33,13 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public ProjectDto getAProject(Long id) {
-        Project project = projectRepository.getOne(id);
-        return modelMapper.map(project, ProjectDto.class);
+        boolean isExist = projectRepository.existsById(id);
+        if (isExist) {
+            Project project = projectRepository.getOne(id);
+            return modelMapper.map(project, ProjectDto.class);
+        } else {
+            throw new IllegalArgumentException("Project not found");
+        }
     }
 
     @Override
