@@ -7,7 +7,9 @@ import {AppLayoutComponent} from "./_layout/app-layout/app-layout.component";
 import {FooterComponent} from "./_layout/footer/footer.component";
 import {HeaderComponent} from "./_layout/header/header.component";
 import {SidebarComponent} from "./_layout/sidebar/sidebar.component";
-import {BsDatepickerModule, BsDropdownModule, CollapseModule, ModalModule, PaginationModule} from "ngx-bootstrap";
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+import {BsDropdownModule, CollapseModule, ModalModule, PaginationModule} from "ngx-bootstrap";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastNoAnimation, ToastNoAnimationModule, ToastrModule} from "ngx-toastr";
 
 @NgModule({
@@ -20,6 +22,7 @@ import {ToastNoAnimation, ToastNoAnimationModule, ToastrModule} from "ngx-toastr
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     CollapseModule.forRoot(),
     BsDropdownModule.forRoot(),

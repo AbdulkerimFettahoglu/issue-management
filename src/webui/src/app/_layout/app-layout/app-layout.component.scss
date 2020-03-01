@@ -30,10 +30,6 @@
     .content-area {
         margin-left: 0px;
     }
-    &.collapsed {
-        filter: blur(3px);
-        transition: filter 0.5s;
-    }
 }
 
 :host {
