@@ -6,6 +6,8 @@ import com.kerimfettahoglu.issuemanagementkerim.service.impl.ProjectServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/project")
 public class ProjectController {
@@ -39,5 +41,12 @@ public class ProjectController {
     public ResponseEntity<Boolean> deleteProject(@PathVariable Long id) {
         boolean result = projectServiceImpl.delete(id);
         return ResponseEntity.ok(result);
+    }
+
+    @GetMapping
+    @RequestMapping("/getAll")
+    public ResponseEntity<List> getAll() {
+        List<ProjectDto> projects = projectServiceImpl.getAll();
+        return ResponseEntity.ok(projects);
     }
 }

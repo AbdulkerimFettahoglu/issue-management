@@ -11,6 +11,8 @@ import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {BsDropdownModule, CollapseModule, ModalModule, PaginationModule} from "ngx-bootstrap";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastNoAnimation, ToastNoAnimationModule, ToastrModule} from "ngx-toastr";
+import {ApiService} from "./services/api.service";
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import {ToastNoAnimation, ToastNoAnimationModule, ToastrModule} from "ngx-toastr
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AppRoutingModule,
     CollapseModule.forRoot(),
     BsDropdownModule.forRoot(),
@@ -36,7 +39,7 @@ import {ToastNoAnimation, ToastNoAnimationModule, ToastrModule} from "ngx-toastr
       autoDismiss: true
     }),
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

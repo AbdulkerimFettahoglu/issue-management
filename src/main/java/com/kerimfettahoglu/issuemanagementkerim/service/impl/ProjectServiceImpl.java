@@ -68,4 +68,10 @@ public class ProjectServiceImpl implements ProjectService {
         projectRepository.save(project);
         return modelMapper.map(project, ProjectDto.class);
     }
+
+    @Override
+    public List<ProjectDto> getAll() {
+        List<Project> data = projectRepository.findAll();
+        return Arrays.asList(modelMapper.map(data, ProjectDto[].class));
+    }
 }
