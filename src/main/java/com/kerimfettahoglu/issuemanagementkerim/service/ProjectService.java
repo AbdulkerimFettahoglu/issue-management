@@ -13,5 +13,5 @@ public interface ProjectService {
     void delete(ProjectDto projectDto);
     boolean delete(Long id);
     ProjectDto updateProject(ProjectDto projectDto);
-    List<ProjectDto> getAll();
+    TPage<ProjectDto> getAll(Pageable pageable);
 }

@@ -1,10 +1,12 @@
 package com.kerimfettahoglu.issuemanagementkerim.util;
 
+import lombok.Data;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
+@Data
 public class TPage<returnType> {
     private int number;
     private int size;
