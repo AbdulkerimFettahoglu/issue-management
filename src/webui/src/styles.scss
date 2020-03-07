@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/scss/bootstrap";
 @import "~material-design-icons-iconfont/dist/material-design-icons.css";
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
 
 body {
   margin: 0;

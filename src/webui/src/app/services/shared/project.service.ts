@@ -13,8 +13,8 @@ export class ProjectService {
 
     }
 
-    getAll():Observable<any> {
-        return this.apiService.get(this.PROJECT_PATH + "/getAll").pipe(map(
+    getAll(page):Observable<any> {
+        return this.apiService.get(this.PROJECT_PATH + "/getAll", page).pipe(map(
             res => {
                 if (res) {
                     return res;
