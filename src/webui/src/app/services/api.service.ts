@@ -10,6 +10,12 @@ import { environment } from '../../environments/environment';
 })
 export class ApiService {
 
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
+  
   constructor(private http: HttpClient) { }
   
   get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
@@ -18,5 +24,9 @@ export class ApiService {
 
   private formatError(error: any) {
     return Observable.of(environment.API_BASE_PATH + error.error);
+  }
+
+  post(path: string, params: HttpParams = new HttpParams()): Observable<any> {
+    return this.http.post(environment.API_BASE_PATH + path, JSON.stringify(params), this.httpOptions).pipe(catchError(this.formatError));
   }
 }
