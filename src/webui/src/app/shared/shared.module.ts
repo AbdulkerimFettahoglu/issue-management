@@ -1,11 +1,22 @@
 import { NgModule } from '@angular/core';
-import { ModalModule } from 'ngx-bootstrap'
-import { ReactiveFormsModule } from '@angular/forms';
+import { ModalModule, BsModalRef } from 'ngx-bootstrap'
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { CommonModule } from "@angular/common";
 
 @NgModule({
+    imports: [
+        CommonModule,
+        FormsModule,
+        ModalModule.forRoot()
+    ],
+    providers: [BsModalRef],
     exports: [
         ModalModule,
-        ReactiveFormsModule
-    ]
+        ReactiveFormsModule,
+        ConfirmationComponent
+    ],
+    declarations: [ConfirmationComponent],
+    entryComponents: [ConfirmationComponent],
 })
 export class SharedModule { }
