@@ -51,4 +51,17 @@ export class ProjectService {
           }
         ));
     }
+
+    delete(id) : Observable<any>{
+        return this.apiService.delete(this.PROJECT_PATH +'/delete/'+id).pipe(map(
+          res =>{
+            if(res){
+              return res;
+            }else{
+              console.log(res);
+              return {};
+            }
+          }
+        ));
+    }
 }

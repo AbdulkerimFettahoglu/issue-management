@@ -1,6 +1,6 @@
 <p>project works!</p>
 <ngx-datatable
-class="material"
+class="bootstrap"
 [rows]="rows"
 [columns]="cols"
 [columnMode]="'force'"
@@ -14,12 +14,15 @@ class="material"
 (page)='setPage($event)'>
 </ngx-datatable>
 
-<button type="button" class="btn btn-primary" (click)="showDeleteConfirmation()">confirm</button>
-<button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button>
- 
+<ng-template #tplProjectDeleteCell let-row="row" let-value="value">
+  <button (click)="showProjectDeleteConfirmation(value)"><i class="material-icons"></i></button>
+</ng-template>
+
+<button type="button" class="btn btn-primary" (click)="openModal(template)">Create Project</button>
+
 <ng-template #template>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
+    <h4 class="modal-title pull-left">New Project</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
