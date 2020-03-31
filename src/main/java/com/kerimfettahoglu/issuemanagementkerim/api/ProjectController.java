@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/project")
+@CrossOrigin
 public class ProjectController {
 
     private final ProjectServiceImpl projectServiceImpl;
@@ -17,28 +18,33 @@ public class ProjectController {
         this.projectServiceImpl = projectServiceImpl;
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping()
+    @RequestMapping("/get/{id}")
     public ResponseEntity<ProjectDto> getProject(@PathVariable("id") Long id) {
         return ResponseEntity.ok(projectServiceImpl.getAProject(id));
     }
 
-    @PostMapping("/post")
+    @PostMapping()
+    @RequestMapping("/post")
     public ResponseEntity<ProjectDto> saveProject(@RequestBody ProjectDto projectDto) {
         return ResponseEntity.ok(projectServiceImpl.save(projectDto));
     }
 
-    @PutMapping("/put")
+    @PutMapping
+    @RequestMapping("/put")
     public ResponseEntity<ProjectDto> updateProject(@RequestBody ProjectDto projectDto) {
         return ResponseEntity.ok(projectServiceImpl.updateProject(projectDto));
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping
+    @RequestMapping("/delete/{id}")
     public ResponseEntity<Boolean> deleteProject(@PathVariable Long id) {
         boolean result = projectServiceImpl.delete(id);
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/getAll")
+    @GetMapping
+    @RequestMapping("/getAll")
     public ResponseEntity<TPage<ProjectDto>> getAll(Pageable pageable) {
         TPage<ProjectDto> data = projectServiceImpl.getAll(pageable);
         return ResponseEntity.ok(data);

@@ -15,19 +15,19 @@ public class IssueManagementKerimApplication {
 	}
 
 	@Bean
-	public ModelMapper getModelMapper() {
-		return new ModelMapper();
-	}
-	
-	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
-				.allowedMethods("*")
-				.allowedOrigins("http://localhost:4200");
+						.allowedMethods("*")
+						.allowedOrigins("http://localhost:4200");
 			}
 		};
+	}
+
+	@Bean
+	public ModelMapper getModelMapper() {
+		return new ModelMapper();
 	}
 }
